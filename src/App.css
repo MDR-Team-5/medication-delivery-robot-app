@@ -1,8 +1,25 @@
-.App {
-  text-align: center;
+html {
+  background-color: #58d3f5;
 }
 
-.App-logo {
+.App {
+  /* text-align: center; */
+  margin: 0 20px;
+}
+
+.btn {
+  margin-right: 20px;
+  background: white;
+  padding: 10px;
+  border-radius: 20px;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,4 +52,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
