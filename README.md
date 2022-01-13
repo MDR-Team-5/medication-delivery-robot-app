@@ -19,9 +19,12 @@ The web application for this project uses React and will pull "patient informati
 * Password created for MySQL database
 * Deploy to public domain/server 
 
-## Getting Started with Create React App
+## Getting Started with React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* git clone https://github.com/MDR-Team-5/medication-delivery-robot-app.git
+* cd medication-delivery-robot-app.git
+* npm install
+* npm start (application can be run locally)
 
 ### Available Scripts
 
