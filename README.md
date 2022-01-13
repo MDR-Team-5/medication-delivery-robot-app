@@ -22,7 +22,7 @@ The web application for this project uses React and will pull "patient informati
 ## Getting Started with React App
 
 * git clone https://github.com/MDR-Team-5/medication-delivery-robot-app.git
-* cd medication-delivery-robot-app.git
+* cd medication-delivery-robot-app
 * npm install
 * npm start (application can be run locally)
 
