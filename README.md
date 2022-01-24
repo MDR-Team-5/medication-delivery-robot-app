@@ -4,20 +4,29 @@ The web application for this project uses React and will pull "patient informati
 
 ## Current Functionality in Progress
 
-* Login screen (with functional password authentification) 
 * Creating the table within the database that stores patient information
 * Pulling patient information from database into web application
 * Communication with Arduino using room buttons
-* Diplay of sensed data
+* Diplay sensed data
+* Deploy to public domain/server or find way to use wifi communicator to connect with Arduino when running the application locally
 
 ## Working Components of the Web Application
 
-* Application can be run locally using `npm start` in the terminal
+* Login component (with functional password authentification)
+
+     ![Screen Shot 2022-01-23 at 9 44 42 PM](https://user-images.githubusercontent.com/58226843/150714178-cd759cf2-98d6-4b02-b93a-4c64d8942d68.png)
+   * Credentials are "user" for the username and "pass" for the password 
+   * Contact Ronni Hartlage (hartlage.7@wright.edu) if you would like credentials specifically made for you
+
+   * Alert box displays an appropriate message if the username or password inputted are incorrect
+
+     ![Screen Shot 2022-01-23 at 9 45 28 PM](https://user-images.githubusercontent.com/58226843/150714977-263d28d5-c1b3-4eb5-8f80-e3d3d675ff87.png)
+
 * Styling has been started for the React application
-    * Background (blue), headings (black), 3 buttons (white background, black text, rounded) for each room
-      <img width="436" alt="Screen Shot 2022-01-05 at 10 26 24 AM" src="https://user-images.githubusercontent.com/58226843/148243342-4b294acc-3e3d-4bc2-a16f-d7540e0e9a91.png">
+    * Background (blue), headings (black), 3 buttons (white background, black text, solid black border, rounded) for each room
+      
+      ![Screen Shot 2022-01-23 at 9 45 43 PM](https://user-images.githubusercontent.com/58226843/150715234-e3724d19-28e8-4579-8800-da00d82db7eb.png)   
 * Password created for MySQL database
-* Deploy to public domain/server 
 
 ## Getting Started with React App
 
@@ -63,33 +72,3 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-### Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-#### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-#### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-#### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-#### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-#### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-#### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
