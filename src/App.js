@@ -58,9 +58,9 @@ function App({ setToken }) {
       <div id="homeContent" style={{ display: "none" }}>
 
         <h2> Choose Delivery Destination </h2> 
-        <a href="#" className="btn"> Room 1 </a>
-        <a href="#" className="btn"> Room 2 </a>
-        <a href="#" className="btn"> Room 3 </a>
+        <a href="#" className="colorBtn redBtn" > Red Room </a>
+        <a href="#" className="colorBtn greenBtn"> Green Room </a>
+        <a href="#" className="colorBtn blueBtn"> Blue Room </a>
 
       </div>
 
