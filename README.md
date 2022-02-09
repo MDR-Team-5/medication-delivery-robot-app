@@ -34,7 +34,11 @@ The web application for this project uses React and will pull "patient informati
 * cd medication-delivery-robot-app
 * npm install
 * npm update 
+* npm install -g npm-check-updates  
 * npm start (application can be run locally)
+
+node should be running v16+  
+npm should be running v8+  
 
 ### Available Scripts
 
