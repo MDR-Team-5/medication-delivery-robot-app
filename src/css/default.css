@@ -1,0 +1,62 @@
+html {
+    background-color: #58d3f5;
+}
+.btn-group{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.btn {
+color: black;
+background-color: white;
+}
+.btn:hover {
+color: white;
+background-color: black;
+}
+
+.btn, .colorBtn {
+margin: 10px 20px 0 0;
+padding: 10px;
+border-radius: 20px;
+border: 2px black solid;
+font-weight: bold;
+font-size: 16px;
+}
+
+.colorBtn {
+color: white;
+}
+
+.redBtn {
+background-color: red;
+}
+.redBtn:hover {
+background-color: rgb(133, 2, 2);
+}
+
+.greenBtn {
+background-color:green;
+}
+.greenBtn:hover {
+background-color: rgb(1, 73, 1);
+}
+
+.blueBtn {
+background-color: blue;
+}
+.blueBtn:hover {
+background-color: rgb(2, 2, 94);
+}
+
+a {
+text-decoration: none;
+}
+
+p {
+font-weight: bold;
+display: inline-block;
+margin: 10px 0;
+width: 100px;
+}
