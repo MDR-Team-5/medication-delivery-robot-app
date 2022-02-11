@@ -61,6 +61,19 @@ function App() {
           </Routes>
         </BrowserRouter>
       </div>
+<<<<<<< HEAD
+=======
+
+      <div id="homeContent" style={{ display: "none" }}>
+
+        <h2> Choose Delivery Destination </h2> 
+        <a href="#" className="colorBtn redBtn" > Red Room </a>
+        <a href="#" className="colorBtn greenBtn"> Green Room </a>
+        <a href="#" className="colorBtn blueBtn"> Blue Room </a>
+
+      </div>
+
+>>>>>>> e8ef01d386e30f4038538a5331e8bf87ac54e021
     </div>
 
    );

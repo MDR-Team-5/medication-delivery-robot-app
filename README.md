@@ -22,11 +22,11 @@ The web application for this project uses React and will pull "patient informati
 
      ![Screen Shot 2022-01-23 at 9 45 28 PM](https://user-images.githubusercontent.com/58226843/150714977-263d28d5-c1b3-4eb5-8f80-e3d3d675ff87.png)
 
-* Styling has been started for the React application
-    * Background (blue), headings (black), 3 buttons (white background, black text, solid black border, rounded) for each room
+* Styling has been added to the React application
+     
+     <img width="416" alt="Screen Shot 2022-02-05 at 2 08 47 PM" src="https://user-images.githubusercontent.com/58226843/152655600-c08eb4f3-a3c6-454d-89fe-4523a9e74899.png">
+
       
-      ![Screen Shot 2022-01-23 at 9 45 43 PM](https://user-images.githubusercontent.com/58226843/150715234-e3724d19-28e8-4579-8800-da00d82db7eb.png)   
-* Password created for MySQL database
 
 ## Getting Started with React App
 
@@ -34,7 +34,11 @@ The web application for this project uses React and will pull "patient informati
 * cd medication-delivery-robot-app
 * npm install
 * npm update 
+* npm install -g npm-check-updates  
 * npm start (application can be run locally)
+
+node should be running v16+  
+npm should be running v8+  
 
 ### Available Scripts
 
