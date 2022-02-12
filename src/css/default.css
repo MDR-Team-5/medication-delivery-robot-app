@@ -26,24 +26,24 @@ font-size: 16px;
 color: white;
 }
 
-.RedBtn {
+.redBtn {
 background-color: red;
 }
-.RedBtn:hover {
+.redBtn:hover {
 background-color: rgb(133, 2, 2);
 }
 
-.GreenBtn {
+.greenBtn {
 background-color:green;
 }
-.GreenBtn:hover {
+.greenBtn:hover {
 background-color: rgb(1, 73, 1);
 }
 
-.BlueBtn {
+.blueBtn {
 background-color: blue;
 }
-.BlueBtn:hover {
+.blueBtn:hover {
 background-color: rgb(2, 2, 94);
 }
 

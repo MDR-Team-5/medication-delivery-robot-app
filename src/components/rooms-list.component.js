@@ -110,16 +110,16 @@ export default class RoomsList extends Component {
           <ul className="list-group">
             {Rooms &&
               Rooms.map((room, index) => (  
-                <div
+                <a href={"/Room/" + room.RoomColor}
                   className={
                     "btn " + "colorBtn " + 
-                    room.RoomColor+"Btn"
+                    room.RoomColor.toLowerCase()+"Btn"
                   }
                   onClick={() => this.setActiveRoom(room, index)}
                   key={index}
                 >       
                   {room.RoomColor}
-                </div>
+                </a>
               ))}
           </ul>
           {/**  Delete All functionality */}
