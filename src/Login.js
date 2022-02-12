@@ -26,7 +26,7 @@ export default function Login({ setToken }) {
     });
     //  Manually check token values
     //    Has security flaws
-    if(username == token.username && password == token.token){
+    if(username === token.username && password === token.token){
       setToken(token);
     }
   }

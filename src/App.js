@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, BrowserRouter, Link } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/default.css"
 
@@ -11,17 +11,6 @@ import Room from "./components/room.component";
 
 //  Custom hook necessary to refresh with credentials
 import useToken from './hooks/useToken';
-
-async function loginUser(credentials) {
-  return fetch('http://localhost:3001/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  })
-    .then(data => data.json())
- }
 
 function App() {
   const { token, setToken } = useToken();
@@ -58,6 +47,9 @@ function App() {
               <Route path="/" element={<RoomsList />}/>
               <Route path="/roomslist" element={<RoomsList />} />
               <Route path="/add" element={<AddRoom />}/>
+              <Route path="/Room/Red" element={<Room />}/>
+              <Route path="/Room/Blue" element={<Room />}/>
+              <Route path="/Room/Green" element={<Room />}/>
           </Routes>
         </BrowserRouter>
       </div>

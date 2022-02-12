@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import RoomDataService from "../services/service";
 import { Link } from "react-router-dom";
 import "../css/default.css";
+
 export default class RoomsList extends Component {
   constructor(props) {
     super(props);
@@ -21,19 +22,21 @@ export default class RoomsList extends Component {
   componentDidMount() {
     this.retrieveRooms();
   }
+
   onChangeSearchRoomColor(e) {
     const searchRoomColor = e.target.value;
     this.setState({
       searchRoomColor: searchRoomColor
     });
   }
+
   retrieveRooms() {
     RoomDataService.getAll()
       .then(response => {
         this.setState({
           Rooms: response.data
         });
-        console.log(response.data);
+        //console.log(response.data);
       })
       .catch(e => {
         console.log(e);
@@ -77,27 +80,20 @@ export default class RoomsList extends Component {
 
   render() {
 
-    const { searchRoomColor, rooms, currentRoom, currentIndex } = this.state;
-    console.log(currentRoom);
-    //return(
-    //  <div className="btn-group">
-    //    <a href="/red" className="colorBtn redBtn" > Red Room </a>
-    //    <a href="/green" className="colorBtn greenBtn"> Green Room </a>
-    //    <a href="/blue" className="colorBtn blueBtn"> Blue Room </a>
-    //  </div>
-    //)
-    //if(false){ // placeholder
+    var { Rooms, currentRoom, currentIndex, searchRoomColor } = this.state;
+    
     return (
       <div className="list row">
-        <div className="col-md-8">
-          <div className="input-group mb-3">
+        {/**  Search Function*/}
+          {/* <div className="col-md-8">
+           <div className="input-group mb-3">
             <input
               type="text"
               className="form-control"
               placeholder="Search by Room Color"
               value={searchRoomColor}
               onChange={this.onChangeSearchRoomColor}
-            />
+            /> 
             <div className="input-group-append">
               <button
                 className="btn btn-outline-secondary"
@@ -108,24 +104,25 @@ export default class RoomsList extends Component {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="col-md-6">
           <h4>Rooms List</h4>
           <ul className="list-group">
-            {rooms &&
-              rooms.map((room, index) => (
-                <li
+            {Rooms &&
+              Rooms.map((room, index) => (  
+                <div
                   className={
-                    "list-group-item " +
-                    (index === currentIndex ? "active" : "")
+                    "btn " + "colorBtn " + 
+                    room.RoomColor+"Btn"
                   }
                   onClick={() => this.setActiveRoom(room, index)}
                   key={index}
-                >
+                >       
                   {room.RoomColor}
-                </li>
+                </div>
               ))}
           </ul>
+          {/**  Delete All functionality */}
           {/* <button
             className="m-3 btn btn-sm btn-danger"
             onClick={this.removeAllRooms}
@@ -133,6 +130,9 @@ export default class RoomsList extends Component {
             Remove All
           </button> */}
         </div>
+        {/**  Having trouble displaying here 
+         *        Something to do with currentRoom 
+        */}
         <div className="col-md-6">
           {currentRoom ? (
             <div>
@@ -140,21 +140,17 @@ export default class RoomsList extends Component {
               <div>
                 <label>
                   <strong>Room Number:</strong>
-                </label>{" "}
+                </label>
+                <div>
                 {currentRoom.RoomID}
+                </div>
               </div>
               <div>
                 <label>
                   <strong>Room Color:</strong>
-                </label>{" "}
-                {currentRoom.RoomColor}
+                </label>
               </div>
-              {/* <Link
-                to={"/Rooms/" + currentRoom.RoomColor}
-                className="badge badge-warning"
-              >
-                Edit
-              </Link> */}
+                {currentRoom.RoomColor}
             </div>
           ) : (
             <div>
@@ -165,5 +161,4 @@ export default class RoomsList extends Component {
         </div>
       </div>);
   }
-//}  // placeholder
 }

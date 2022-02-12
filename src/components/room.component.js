@@ -15,7 +15,8 @@ export default class Room extends Component {
     };
   }
   componentDidMount() {
-    this.getRoom(this.props.match.params.id);
+    console.log(this.props);
+    //this.getRoom(this.props.match.params.id);
   }
   onChangeRoomID(e) {
     const RoomID = e.target.value;
@@ -53,6 +54,12 @@ export default class Room extends Component {
 
 render() {
     const { currentRoom } = this.state;
+    return(
+      <div>
+        <h1> RED </h1>
+      </div>
+    );
+    if(false){ // Placeholder
     return (
       <div>
         {currentRoom ? (
@@ -92,4 +99,5 @@ render() {
       </div>
     );
   }
+} // Placeholder
 }
