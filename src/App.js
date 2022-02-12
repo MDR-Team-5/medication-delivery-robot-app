@@ -13,7 +13,7 @@ import Room from "./components/room.component";
 import useToken from './hooks/useToken';
 
 async function loginUser(credentials) {
-  return fetch('http://localhost:3080/login', {
+  return fetch('http://localhost:3001/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

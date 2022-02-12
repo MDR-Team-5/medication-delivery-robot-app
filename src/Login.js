@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './css/Login.css';
 
 async function loginUser(credentials) {
-  return fetch('http://localhost:3080/login', {
+  return fetch('http://localhost:3001/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ export default function Login({ setToken }) {
     });
     //  Manually check token values
     //    Has security flaws
-    if(password == token.token){
+    if(username == token.username && password == token.token){
       setToken(token);
     }
   }
