@@ -3,57 +3,68 @@ html {
 }
 
 .btn {
-color: black;
-background-color: white;
-width: 10em;
-height: 3em;
+    color: black;
+    background-color: rgb(121, 121, 121);
+    width: 10em;
+    height: 3em;
 }
 .btn:hover {
-color: white;
-background-color: black;
+    color: white;
+    background-color: black;
 }
 
 .btn, .colorBtn {
-margin: 10px 20px 0 0;
-padding: 10px;
-border-radius: 20px;
-border: 2px black solid;
-font-weight: bold;
-font-size: 16px;
+    margin: 10px 20px 0 0;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px black solid;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .colorBtn {
-color: white;
+    color: rgb(255, 255, 255);   
+}
+.colorBtn:hover {
+    color: rgb(109, 109, 109);   
 }
 
 .redBtn {
-background-color: red;
+    background-color: red;
 }
 .redBtn:hover {
-background-color: rgb(133, 2, 2);
+    background-color: rgb(133, 2, 2);
 }
 
 .greenBtn {
-background-color:green;
+    background-color:green;
 }
 .greenBtn:hover {
-background-color: rgb(1, 73, 1);
+    background-color: rgb(1, 73, 1);
 }
 
 .blueBtn {
-background-color: blue;
+    background-color: blue;
 }
 .blueBtn:hover {
-background-color: rgb(2, 2, 94);
+    background-color: rgb(2, 2, 94);
 }
 
+.purpleBtn {
+    background-color: purple;
+}
+.purpleBtn:hover {
+    background-color: rgb(97, 24, 97);
+}
+    
+
 a {
-text-decoration: none;
+    text-decoration: none;
 }
 
 p {
-font-weight: bold;
-display: inline-block;
-margin: 10px 0;
-width: 100px;
+    font-weight: bold;
+    display: inline-block;
+    margin: 10px 0;
+    width: 100px;
 }
