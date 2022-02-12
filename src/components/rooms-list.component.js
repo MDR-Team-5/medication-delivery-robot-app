@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import RoomDataService from "../services/service";
-import { Link } from "react-router-dom";
 import "../css/default.css";
 
 export default class RoomsList extends Component {
@@ -110,7 +109,7 @@ export default class RoomsList extends Component {
           <ul className="list-group">
             {Rooms &&
               Rooms.map((room, index) => (  
-                <a href={"/Room/" + room.RoomColor}
+                <div
                   className={
                     "btn " + "colorBtn " + 
                     room.RoomColor.toLowerCase()+"Btn"
@@ -119,7 +118,7 @@ export default class RoomsList extends Component {
                   key={index}
                 >       
                   {room.RoomColor}
-                </a>
+                </div>
               ))}
           </ul>
           {/**  Delete All functionality */}

@@ -47,9 +47,6 @@ function App() {
               <Route path="/" element={<RoomsList />}/>
               <Route path="/roomslist" element={<RoomsList />} />
               <Route path="/add" element={<AddRoom />}/>
-              <Route path="/Room/Red" element={<Room />}/>
-              <Route path="/Room/Blue" element={<Room />}/>
-              <Route path="/Room/Green" element={<Room />}/>
           </Routes>
         </BrowserRouter>
       </div>
