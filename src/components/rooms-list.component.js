@@ -1,32 +1,41 @@
 import React, { Component } from "react";
-import RoomDataService from "../services/service";
+import RoomDataService from "../services/rooms-service";
+import PatientDataService from "../services/patients-service"
+import MedicineDataService from "../services/medicines-service"
 import "../css/default.css";
 
 export default class RoomsList extends Component {
+  /** Current ORM API does not support creation, deletion, or searchByRoomColor */
   constructor(props) {
     super(props);
-    this.onChangeSearchRoomColor = this.onChangeSearchRoomColor.bind(this);
+    //this.onChangeSearchRoomColor = this.onChangeSearchRoomColor.bind(this);
     this.retrieveRooms = this.retrieveRooms.bind(this);
-    this.refreshList = this.refreshList.bind(this);
+    this.retrievePatients = this.retrievePatients.bind(this);
+    this.retrieveMedicines = this.retrieveMedicines.bind(this);
+
     this.setActiveRoom = this.setActiveRoom.bind(this);
-    this.removeAllRooms = this.removeAllRooms.bind(this);
-    this.searchRoomColor = this.searchRoomColor.bind(this);
+    //this.setActivePatient = this.setActivePatient.bind(this);
+    //this.setActiveMedicine = this.setActiveMedicine.bind(this);
+
+    //this.refreshList = this.refreshList.bind(this);
+    //this.removeAllRooms = this.removeAllRooms.bind(this);
+    //this.searchRoomColor = this.searchRoomColor.bind(this);
     this.state = {
       Rooms: [],
       currentRoom: null,
-      currentIndex: -1,
-      searchRoomColor: ""
+      currentRoomIndex: -1,
+      //searchRoomColor: ""
+      Patients: [],
+      currentPatient: null,
+      Medicines: [],
+      currentMedicine: null
     };
   }
+
   componentDidMount() {
     this.retrieveRooms();
-  }
-
-  onChangeSearchRoomColor(e) {
-    const searchRoomColor = e.target.value;
-    this.setState({
-      searchRoomColor: searchRoomColor
-    });
+    this.retrievePatients();
+    this.retrieveMedicines();
   }
 
   retrieveRooms() {
@@ -41,46 +50,114 @@ export default class RoomsList extends Component {
         console.log(e);
       });
   }
-  refreshList() {
-    this.retrieveRooms();
-    this.setState({
-      currentRoom: null,
-      currentIndex: -1
-    });
+
+  retrievePatients(){
+    PatientDataService.getAll()
+    .then(response => {
+      this.setState({
+        Patients: response.data
+      });
+      //console.log(response.data);
+    })
+    .catch(e => {
+      console.log(e);
+    });  
+  }  
+  
+  retrieveMedicines(){
+    MedicineDataService.getAll()
+    .then(response => {
+      this.setState({
+        Medicines: response.data
+      });
+      //console.log(response.data);
+    })
+    .catch(e => {
+      console.log(e);
+    });  
   }
+
   setActiveRoom(Room, index) {
+    var {Patients, thisPatient,
+        Medicines,  thisMedicine} = this.state;
+
     this.setState({
       currentRoom: Room,
-      currentIndex: index
+      currentRoomIndex: index,
+      currentPatient: null,
+      currentMedicine: null
     });
-  }
-  removeAllRooms() {
-    RoomDataService.deleteAll()
-      .then(response => {
-        console.log(response.data);
-        this.refreshList();
-      })
-      .catch(e => {
-        console.log(e);
+
+    if(Room){
+      Patients.forEach(thisPatient => {
+        if(Room.RoomID == thisPatient.PatientRoomID){
+          this.setState({currentPatient: thisPatient});
+          Medicines.forEach(thisMedicine => {
+            if(thisPatient.PatientMedicineID == thisMedicine.MedicineID){
+              this.setState({currentMedicine: thisMedicine});
+            }
+          });
+        }
       });
+
+    }
+
+    
+
+
   }
-  searchRoomColor() {
-    RoomDataService.findByRoomColor(this.state.searchRoomColor)
-      .then(response => {
-        this.setState({
-          Rooms: response.data
-        });
-        console.log(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  }
+  
+  /**  Delete Functionality disabled as API does not support capabilities */
+  // refreshList() {
+  //   this.retrieveRooms();
+  //   this.retrievePatients();
+  //   this.setState({
+  //     currentRoom: null,
+  //     currentRoomIndex: -1
+  //   });
+  // }
+  
+  // removeAllRooms() {
+  //   RoomDataService.deleteAll()
+  //     .then(response => {
+  //       console.log(response.data);
+  //       this.refreshList();
+  //     })
+  //     .catch(e => {
+  //       console.log(e);
+  //     });
+  // }
+
+  /**  Search Functionality disabled as API does not support capabilities */
+  // onChangeSearchRoomColor(e) {
+  //   const searchRoomColor = e.target.value;
+  //   this.setState({
+  //     searchRoomColor: searchRoomColor
+  //   });
+  // }
+  
+  // searchRoomColor() {
+  //   RoomDataService.findByRoomColor(this.state.searchRoomColor)
+  //     .then(response => {
+  //       this.setState({
+  //         Rooms: response.data
+  //       });
+  //       console.log(response.data);
+  //     })
+  //     .catch(e => {
+  //       console.log(e);
+  //     });
+  // }
 
   render() {
 
-    var { Rooms, currentRoom, currentIndex, searchRoomColor } = this.state;
-    
+    //var { Rooms, currentRoom, currentRoomIndex, searchRoomColor } = this.state;
+    var { Rooms, currentRoom, currentRoomIndex, 
+          Patients, currentPatient,
+          Medicines, currentMedicine } = this.state;
+          
+    //  Setting state's current medicine based on Room Button onClick changes
+
     return (
       <div className="list row">
         {/**  Search Function*/}
@@ -108,7 +185,7 @@ export default class RoomsList extends Component {
           <h4>Rooms List</h4>
           <ul className="list-group">
             {Rooms &&
-              Rooms.map((room, index) => (  
+             Rooms.map((room, index) => (
                 <div
                   className={
                     "btn " + "colorBtn " + 
@@ -129,9 +206,6 @@ export default class RoomsList extends Component {
             Remove All
           </button> */}
         </div>
-        {/**  Having trouble displaying here 
-         *        Something to do with currentRoom 
-        */}
         <div className="col-md-6">
           {currentRoom ? (
             <div>
@@ -157,6 +231,28 @@ export default class RoomsList extends Component {
               <p>Please click on a Room...</p>
             </div>
           )}
+            {(currentPatient && currentMedicine) ? (
+            <div>
+                <div>
+                <label>
+                  <strong>Patient Name: </strong>
+                </label>
+              </div>
+              {currentPatient.PatientFirst}              
+              <div>
+                <label>
+                  <strong>Patient Medicine: </strong>
+                </label>
+              </div>
+              {currentMedicine.MedicineLabel}              
+
+            </div>
+          ) : (
+            <div>
+              <br />
+              <p> No Patients</p>
+            </div>
+          )}        
         </div>
       </div>);
   }

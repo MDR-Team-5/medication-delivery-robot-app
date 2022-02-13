@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import RoomDataService from "../services/service";
+import RoomDataService from "../services/rooms-service";
 
 export default class AddRoom extends Component {
   constructor(props) {
@@ -52,48 +52,58 @@ export default class AddRoom extends Component {
   }
 
   render() {
-    return (
-      <div className="submit-form">
-        {this.state.submitted ? (
-          <div>
-            <h4>You submitted successfully!</h4>
-            <button className="btn btn-success" onClick={this.newRoom}>
-              Add
-            </button>
-          </div>
-        ) : (
-          <div>
-            <div className="form-group">
-              <label htmlFor="RoomID">RoomID</label>
-              <input
-                type="text"
-                className="form-control"
-                id="RoomID"
-                required
-                value={this.state.RoomID}
-                onChange={this.onChangeRoomID}
-                name="Room ID"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="RoomColor">Room Color</label>
-              <input
-                type="text"
-                className="form-control"
-                id="RoomColor"
-                required
-                value={this.state.RoomColor}
-                onChange={this.onChangeRoomColor}
-                name="Room Color"
-              />
-            </div>
-            <button onClick={this.saveRoom} className="btn btn-success">
-              Submit
-            </button>
-          </div>
-        )}
+
+    return(
+      <div>
+        <h1> This page is a work in progress.</h1>
+        <h4> Functionality yet to be implemented</h4>
       </div>
     );
-  };
+    if(false){
+      return (
+        <div className="submit-form">
+          {this.state.submitted ? (
+            <div>
+              <h4>You submitted successfully!</h4>
+              <button className="btn btn-success" onClick={this.newRoom}>
+                Add
+              </button>
+            </div>
+          ) : (
+            <div>
+              <div className="form-group">
+                <label htmlFor="RoomID">RoomID</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="RoomID"
+                  required
+                  value={this.state.RoomID}
+                  onChange={this.onChangeRoomID}
+                  name="Room ID"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="RoomColor">Room Color</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="RoomColor"
+                  required
+                  value={this.state.RoomColor}
+                  onChange={this.onChangeRoomColor}
+                  name="Room Color"
+                />
+              </div>
+              <button onClick={this.saveRoom} className="btn btn-success">
+                Submit
+              </button>
+            </div>
+          )}
+        </div>
+      );
+    };
+    }
+    
 
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import RoomDataService from "../services/service";
+import RoomDataService from "../services/rooms-service";
 export default class Room extends Component {
   constructor(props) {
     super(props);

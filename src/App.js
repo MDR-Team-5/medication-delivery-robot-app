@@ -33,10 +33,10 @@ function App() {
               Medication Delivery Robot
         </a>
         <div className="navbar-nav mr-auto">
-          <li className="nav-item">
+          <li className="btn">
           <a href="/roomslist">List of Rooms</a>
           </li>
-          <li className="nav-item">
+          <li className="btn">
           <a href="/add">Add A Room</a>
           </li>
         </div>
