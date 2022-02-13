@@ -238,7 +238,7 @@ export default class RoomsList extends Component {
                   <strong>Patient Name: </strong>
                 </label>
               </div>
-              {currentPatient.PatientFirst}              
+              {currentPatient.PatientFirst + " " + currentPatient.PatientLast}              
               <div>
                 <label>
                   <strong>Patient Medicine: </strong>
