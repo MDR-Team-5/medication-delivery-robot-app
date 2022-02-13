@@ -36,7 +36,7 @@ The web application for this project uses React and will pull "patient informati
 * npm update 
 * npm install -g npm-check-updates  
 * npm start (application can be run locally)
-* node server.js //  This is used by the password authenticator
+* node /path/to/nodejs_mysql/server.js ##  This is used for the password authenticator and ORM API
 
 node should be running v16+  
 npm should be running v8+  
