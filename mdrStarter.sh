@@ -9,7 +9,7 @@ startUp_system(){
     currOS=$OSTYPE
     if [[ "$currOS" == "win32" ]] ;then
         echo "Initializing Windows Start Up Protocols . . ."
-        #echo windows_init
+        windows_init
     else
         ## One can only pray you have Linux commands
         echo "Initializing Unix System Start Up Protocols . . ."
@@ -21,54 +21,78 @@ startUp_system(){
 windows_init(){
     #  Maybe a work in progress
     ##  Team Discussion!
+    echo "Functionality is still a work in progress"
     echo "Perhaps run this on a Unix shell"
 
 }
 
 unix_init(){
+    dir=$PWD
     echo " "
     echo "Currently working within directory: "
-    echo $1    
+    echo $dir    
     if [[ $EUID -eq 0  ]] ;then
         echo " "
         echo "Running script as root admin . . ."
-        dir=$PWD
         echo " "
-        echo "Updating and Upgrading current system. . ."
-        sudo apt-get upgrade -y > /dev/null
-        sudo apt-get update -y > /dev/null
-        unix_mySQL_init $dir
-        unix_ServiceLayer $dir
+        echo "Have you ran the script before? "
+        echo "[y] for yes"
+        echo "[n] for no"
+        read -r userPrompt
+        if [[ $userPrompt == "n" ]] ;then 
+            echo " "
+            echo "Preparing for installation of components. . ."
+            unix_component_install $dir
+            unix_CreateDB $dir
+        fi
+        echo " "
+        unix_mySQL $dir
+        unix_serviceLayer $dir
         unix_webApp $dir
         echo " "
-        echo "All installation and configuration completed!"
+        echo "All installation and configuration completed!"       
     else   
         echo " "
         echo "This script requires root privileges to install and configure the device."
     fi
 }
 
-unix_mySQL_init(){
+unix_component_install(){
     echo " "
-    #  install DB Application
+    echo "Updating and Upgrading current system. . ."
+    sudo apt-get upgrade -y > /dev/null
+    sudo apt-get update -y > /dev/null
+    sudo apt install screen -y > /dev/null
+    #  Install database components
+    echo " "
     echo "Installing necessary components for database . . ."
     sudo apt-get install mariadb-server -y > /dev/null
-    echo "Starting MYSQL service . . ."
-    sudo service mysql start > /dev/null
-    echo "Opening MYSQL Port . . ."
-    sudo ufw allow 3306/tcp > /dev/null
-    #  Uncomment below to confirm Port 3306 is open
-    #netstat -tuplen 
+    # Install service layer components
+    echo " "
+    echo "Installing necessary components for service layer. . ."
+    cd $1/nodejs_mysql
+    npm install express sequelize mysql2 cors --save > /dev/null
+    # Install web appication components
+    echo " "
+    echo "Installing necessary components for Web Application. . ."
+    cd $1/medication-delivery-robot-app
+    npm install > /dev/null
+    npm install axios > /dev/null
+    npm update > /dev/null
+    npm install -g npm-check-updates > /dev/null         
+}
+
+unix_createDB(){
     echo " "
     echo "Creating Medication_Delivery_Database . . ."
     # Pass SQL CREATE/INSERT commands quietly (asides for some error messages)
-    ##  Create Database and Tables
+    ##  Script create Database and Tables
     if [[ -f $1/medication-delivery-robot-SQL-table/mdrCreateTable.sql ]] ;then
         echo " "
         echo "Running script to create Database and Tables for Medication_Delivery_Database. . ."
         sudo mysql -e "source $1/medication-delivery-robot-SQL-table/mdrCreateTable.sql" > /dev/null
     fi
-    ##  Insert Data to Tables
+    ##  Script insert Data to Tables
     if [[ -f $1/medication-delivery-robot-SQL-table/mdrInsertScript.sql ]] ;then
         echo " "
         echo "Running script to insert information for Medication_Delivery_Database. . ."
@@ -83,23 +107,32 @@ unix_mySQL_init(){
     echo "Medication_Delivery_Database is ready for use."
 }
 
-unix_ServiceLayer(){
+unix_mySQL(){
+    echo " "
+    echo "Starting MYSQL service . . ."
+    sudo service mysql start > /dev/null
+    echo "Opening MYSQL Port . . ."
+    sudo ufw allow 3306/tcp > /dev/null
+    #  Uncomment below to confirm Port 3306 is open
+    #netstat -tuplen
+}
+
+unix_serviceLayer(){
     echo " " 
     echo "Running Service Layer Server. . ."
+    echo $PWD
     cd $1/nodejs_mysql
-    npm install express sequelize mysql2 cors --save > /dev/null
-    screen -dm node server.js
+    screen -dm -S servicelayerscn node server.js
+    cd ..
 }
 
 unix_webApp(){
     echo " "
-    echo "Installing necessary components for Web Application. . ."
+    echo "Running Web Application. . ."
+    echo $PWD
     cd $1/medication-delivery-robot-app
-    npm install > /dev/null
-    npm install axios > /dev/null
-    npm update > /dev/null
-    npm install -g npm-check-updates > /dev/null
-    screen -dm npm start
+    screen -dm -S webappscn npm start
+    cd ..
 }
 
 init(){
@@ -137,12 +170,20 @@ init(){
     else
         echo "One of the Configurations are missing."
         echo " "
-        echo "The script file must be in the parent directory where the git clone command is ran."
-        echo "Attempt to move the script if it is located inside any of the application repositories,"
-        echo "which retrieved the script from a git clone command."
-        echo " "
         echo "Script did not run."
     fi
 }
 
-init
+#  Move Script up a layer
+if [[ -d .git ]] ;then
+    echo "Correcting Working Directory. . ."
+    mv mdrStarter.sh ../mdrStarter.sh
+    echo " "
+    echo "Script has been moved to the correct file location"
+    echo "Please go up a directory level and re-run the script"
+else 
+    init
+    
+fi
+    echo " "
+    echo "Script ending. . ."
