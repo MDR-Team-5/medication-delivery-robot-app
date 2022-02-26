@@ -13,7 +13,6 @@ startUp_system(){
     else
         ## One can only pray you have Linux commands
         echo "Initializing Unix System Start Up Protocols . . ."
-        #  Uncomment when ready to install
         unix_init
     fi
 }
@@ -46,7 +45,7 @@ unix_init(){
             unix_CreateDB $dir
         fi
         echo " "
-        #unix_mySQL $dir
+        unix_mySQL $dir
         unix_serviceLayer $dir
         unix_webApp $dir
         echo " "
