@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import './css/Login.css';
 
 async function loginUser(credentials) {
+  //  This is an issue causing outside devices in the same network
+  //  to not be able to connect to the login API
   return fetch('http://localhost:3001/login', {
     method: 'POST',
     headers: {
