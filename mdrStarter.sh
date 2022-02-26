@@ -46,7 +46,7 @@ unix_init(){
             unix_CreateDB $dir
         fi
         echo " "
-        unix_mySQL $dir
+        #unix_mySQL $dir
         unix_serviceLayer $dir
         unix_webApp $dir
         echo " "
@@ -120,23 +120,22 @@ unix_mySQL(){
 unix_serviceLayer(){
     echo " " 
     echo "Running Service Layer Server. . ."
-    echo $PWD
     cd $1/nodejs_mysql
     screen -dm -S servicelayerscn node server.js
-    cd ..
 }
 
 unix_webApp(){
     echo " "
     echo "Running Web Application. . ."
-    echo $PWD
     cd $1/medication-delivery-robot-app
     screen -dm -S webappscn npm start
-    cd ..
 }
 
 init(){
     validateDirectory=true
+    if [[ -d .git ]] ;then
+        cd ..
+    fi 
     echo "Checking accessibility to: "
     #  MySQL Repository
     if [[ -d $PWD/medication-delivery-robot-SQL-table/ ]] ;then
@@ -175,14 +174,7 @@ init(){
 }
 
 #  Move Script up a layer
-if [[ -d .git ]] ;then
-    echo "Correcting Working Directory. . ."
-    mv mdrStarter.sh ../mdrStarter.sh
-    echo " "
-    echo "Script has been moved to the correct file location"
-    echo "Please go up a directory level and re-run the script"
-else 
+
     init  
-fi
     echo " "
     echo "Script ending. . ."
