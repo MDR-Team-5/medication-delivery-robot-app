@@ -182,8 +182,7 @@ if [[ -d .git ]] ;then
     echo "Script has been moved to the correct file location"
     echo "Please go up a directory level and re-run the script"
 else 
-    init
-    
+    init  
 fi
     echo " "
     echo "Script ending. . ."
