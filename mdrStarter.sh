@@ -42,7 +42,7 @@ unix_init(){
             echo " "
             echo "Preparing for installation of components. . ."
             unix_component_install $dir
-            unix_CreateDB $dir
+            unix_createDB $dir
         fi
         echo " "
         unix_mySQL $dir
