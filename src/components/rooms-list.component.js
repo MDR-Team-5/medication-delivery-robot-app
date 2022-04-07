@@ -1,9 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, createContext } from "react";
+//  Socket Library Imports
+import io from 'socket.io-client';
+
 import RoomDataService from "../services/rooms-service";
 import PatientDataService from "../services/patients-service"
 import MedicineDataService from "../services/medicines-service"
 import "../css/default.css";
 
+const WebSocketContext = createContext(null);
+
+//export{ WebSocketContext }
 export default class RoomsList extends Component {
   /** Current ORM API does not support creation, deletion, or searchByRoomColor */
   constructor(props) {
@@ -14,6 +20,7 @@ export default class RoomsList extends Component {
     this.retrieveMedicines = this.retrieveMedicines.bind(this);
 
     this.setActiveRoom = this.setActiveRoom.bind(this);
+    //this.setArduinoButtonText = this.setArduinoButtonText(this);
     //this.setActivePatient = this.setActivePatient.bind(this);
     //this.setActiveMedicine = this.setActiveMedicine.bind(this);
 
@@ -28,7 +35,8 @@ export default class RoomsList extends Component {
       Patients: [],
       currentPatient: null,
       Medicines: [],
-      currentMedicine: null
+      currentMedicine: null,
+      //arduinoButtonText: ""
     };
   }
 
@@ -102,9 +110,37 @@ export default class RoomsList extends Component {
 
     }
 
-    
+  }
 
+  setText(id, Color){
+    console.log("BUTTON CLICKED AAAA" + id + " " + Color);
 
+    let socket;
+    let ws;
+
+    const message = (Color) => {
+      const payload = {
+        Color: Color
+      }
+
+      socket.emit("event://send-message", JSON.stringify(payload));
+    }
+ //  param is maybe IP?
+    if(!socket){
+      socket = io.connect()
+      socket.on("event://send-message", (msg) => {
+        const payload = JSON.parse(msg);
+      })
+
+      ws = {
+        socket:socket,
+        message
+      }
+    }
+    return(
+      <WebSocketContext.Provider value={ws}>{}
+      </WebSocketContext.Provider>
+    )
   }
   
   /**  Delete Functionality disabled as API does not support capabilities */
@@ -156,7 +192,8 @@ export default class RoomsList extends Component {
           Patients, currentPatient,
           Medicines, currentMedicine } = this.state;
           
-    //  Setting state's current medicine based on Room Button onClick changes
+    //arduinoBtn.value = setText();
+          //  Setting state's current medicine based on Room Button onClick changes
 
     return (
       <div className="list row">
@@ -245,7 +282,11 @@ export default class RoomsList extends Component {
                 </label>
               </div>
               {currentMedicine.MedicineLabel}              
-
+              <div>
+              <button id="arduinoButton" onClick={() => { this.setText(currentRoom.RoomID, currentRoom.RoomColor)}
+                  }
+> button Text </button>    
+              </div>
             </div>
           ) : (
             <div>
