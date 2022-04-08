@@ -284,7 +284,7 @@ export default class RoomsList extends Component {
                 </div>
                 {currentMedicine.MedicineLabel}              
                 <div>
-                <button id="arduinoButton" className="btn" onClick={() => { this.setText(currentRoom.RoomID, currentRoom.RoomColor)}}> Text here </button>    
+                <button id="arduinoButton" className="btn" onClick={() => { this.setDestination(currentRoom.RoomID, currentRoom.RoomColor)}}> Send to {(currentRoom.RoomColor)} </button>    
                 </div>
               </div>
             ) : (
