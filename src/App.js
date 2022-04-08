@@ -50,6 +50,9 @@ function App() {
           </Routes>
         </BrowserRouter>
       </div>
+      <footer>
+        <p>Designed/Developed by Ronni & Brandon </p>
+      </footer>
   </div>
 
    );

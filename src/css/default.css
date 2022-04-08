@@ -9,8 +9,8 @@ html {
     height: 3em;
 }
 .btn:hover {
-    color: white;
-    background-color: black;
+    color: white !important;
+    background-color: black !important;
 }
 
 .btn, .colorBtn {
@@ -20,6 +20,18 @@ html {
     border: 2px black solid;
     font-weight: bold;
     font-size: 16px;
+}
+
+.navbar-expand .navbar-nav .btn { 
+    background-color: white;
+    margin-top: 0;
+}
+.navbar-expand .navbar-nav a { 
+    color: black;
+}
+
+.navbar-expand .navbar-nav .btn:hover {
+    background-color: #58d3f5 !important;
 }
 
 .colorBtn {
@@ -57,14 +69,45 @@ html {
     background-color: rgb(97, 24, 97);
 }
     
-
 a {
     text-decoration: none;
 }
 
-p {
+.loginP {
     font-weight: bold;
     display: inline-block;
     margin: 10px 0;
     width: 100px;
+}
+
+#arduinoButton {
+    background-color: white;
+}
+
+/* navbar */
+.navbar-brand {
+    padding-left: 20px;
+}
+
+/* Room List Page */
+.roomList-wrapper {
+    padding-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 64px;
+    background-color: black;
+    width: 100%;
+}
+footer p {
+    color: white;
+    position: relative;
+    top: 27%;
+    padding-left: 20px;
+    margin-left: 20px;
+    font-size: 1.25rem;
+    margin: auto;
 }

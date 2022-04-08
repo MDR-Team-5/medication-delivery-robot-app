@@ -5,7 +5,7 @@ import './css/Login.css';
 async function loginUser(credentials) {
   //  This is an issue causing outside devices in the same network
   //  to not be able to connect to the login API
-  //return fetch('http://localhost:3001/login', {
+  // return fetch('http://localhost:3001/login', {
   return fetch('http://10.16.18.102:3001/login', {
     method: 'POST',
     headers: {
@@ -39,17 +39,18 @@ export default function Login({ setToken }) {
         <h1>Please Log In</h1>
         <form onSubmit={handleSubmit}>
           <label>
-            <p>Username</p>
-            <input type="text" onChange={e => setUserName(e.target.value)}/>
+            <p className="loginP">Username</p>
+            <input className="loginField" type="text" onChange={e => setUserName(e.target.value)}/>
         </label>
           <label>
-            <p>Password</p>
-            <input type="password" onChange={e => setPassword(e.target.value)}/>
+            <p className="loginP">Password</p>
+            <input className="loginField" type="password" onChange={e => setPassword(e.target.value)}/>
           </label>
-          <div>
-            <button type="submit">Submit</button>
-          </div>
+          <button className="loginSubmitBtn" type="submit">Login</button>
         </form>
+        <footer>
+          <p>Designed/Developed by Ronni & Brandon </p>
+      </footer>
     </div>
   )
 }

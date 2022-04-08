@@ -196,104 +196,104 @@ export default class RoomsList extends Component {
           //  Setting state's current medicine based on Room Button onClick changes
 
     return (
-      <div className="list row">
-        {/**  Search Function*/}
-          {/* <div className="col-md-8">
-           <div className="input-group mb-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search by Room Color"
-              value={searchRoomColor}
-              onChange={this.onChangeSearchRoomColor}
-            /> 
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary"
-                type="button"
-                onClick={this.searchRoomColor}
-              >
-                Search
-              </button>
+      <div className="roomList-wrapper">
+        <div className="list row">
+          {/**  Search Function*/}
+            {/* <div className="col-md-8">
+            <div className="input-group mb-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search by Room Color"
+                value={searchRoomColor}
+                onChange={this.onChangeSearchRoomColor}
+              /> 
+              <div className="input-group-append">
+                <button
+                  className="btn btn-outline-secondary"
+                  type="button"
+                  onClick={this.searchRoomColor}
+                >
+                  Search
+                </button>
+              </div>
             </div>
+          </div> */}
+          <div className="col-md-6">
+            <h1>Rooms List</h1>
+            <ul className="list-group">
+              {Rooms &&
+              Rooms.map((room, index) => (
+                  <div
+                    className={
+                      "btn " + "colorBtn " + 
+                      room.RoomColor.toLowerCase()+"Btn"
+                    }
+                    onClick={() => this.setActiveRoom(room, index)}
+                    key={index}
+                  >       
+                    {room.RoomColor}
+                  </div>
+                ))}
+            </ul>
+            {/**  Delete All functionality */}
+            {/* <button
+              className="m-3 btn btn-sm btn-danger"
+              onClick={this.removeAllRooms}
+            >
+              Remove All
+            </button> */}
           </div>
-        </div> */}
-        <div className="col-md-6">
-          <h4>Rooms List</h4>
-          <ul className="list-group">
-            {Rooms &&
-             Rooms.map((room, index) => (
-                <div
-                  className={
-                    "btn " + "colorBtn " + 
-                    room.RoomColor.toLowerCase()+"Btn"
-                  }
-                  onClick={() => this.setActiveRoom(room, index)}
-                  key={index}
-                >       
-                  {room.RoomColor}
-                </div>
-              ))}
-          </ul>
-          {/**  Delete All functionality */}
-          {/* <button
-            className="m-3 btn btn-sm btn-danger"
-            onClick={this.removeAllRooms}
-          >
-            Remove All
-          </button> */}
-        </div>
-        <div className="col-md-6">
-          {currentRoom ? (
-            <div>
-              <h4>Room</h4>
+          <div className="col-md-6">
+            {currentRoom ? (
               <div>
-                <label>
-                  <strong>Room Number:</strong>
-                </label>
+                <h4>Room</h4>
                 <div>
-                {currentRoom.RoomID}
+                  <label>
+                    <strong>Room Number:</strong>
+                  </label>
+                  <div>
+                  {currentRoom.RoomID}
+                  </div>
+                </div>
+                <div>
+                  <label>
+                    <strong>Room Color:</strong>
+                  </label>
+                </div>
+                  {currentRoom.RoomColor}
+              </div>
+            ) : (
+              <div>
+                <br />
+                <p>Please click on a Room...</p>
+              </div>
+            )}
+              {(currentPatient && currentMedicine) ? (
+              <div>
+                  <div>
+                  <label>
+                    <strong>Patient Name: </strong>
+                  </label>
+                </div>
+                {currentPatient.PatientFirst + " " + currentPatient.PatientLast}              
+                <div>
+                  <label>
+                    <strong>Patient Medicine: </strong>
+                  </label>
+                </div>
+                {currentMedicine.MedicineLabel}              
+                <div>
+                <button id="arduinoButton" className="btn" onClick={() => { this.setText(currentRoom.RoomID, currentRoom.RoomColor)}}> Text here </button>    
                 </div>
               </div>
+            ) : (
               <div>
-                <label>
-                  <strong>Room Color:</strong>
-                </label>
+                <br />
+                <p> No Patients</p>
               </div>
-                {currentRoom.RoomColor}
-            </div>
-          ) : (
-            <div>
-              <br />
-              <p>Please click on a Room...</p>
-            </div>
-          )}
-            {(currentPatient && currentMedicine) ? (
-            <div>
-                <div>
-                <label>
-                  <strong>Patient Name: </strong>
-                </label>
-              </div>
-              {currentPatient.PatientFirst + " " + currentPatient.PatientLast}              
-              <div>
-                <label>
-                  <strong>Patient Medicine: </strong>
-                </label>
-              </div>
-              {currentMedicine.MedicineLabel}              
-              <div>
-              <button id="arduinoButton" onClick={() => { this.setText(currentRoom.RoomID, currentRoom.RoomColor)}
-                  }
-> button Text </button>    
-              </div>
-            </div>
-          ) : (
-            <div>
-              <br />
-              <p> No Patients</p>
-            </div>
-          )}        
+            )}        
+          </div>
         </div>
       </div>);
   }
