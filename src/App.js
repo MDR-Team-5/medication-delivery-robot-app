@@ -12,6 +12,8 @@ import Room from "./components/room.component";
 //  Custom hook necessary to refresh with credentials
 import useToken from './hooks/useToken';
 
+
+
 function App() {
   const { token, setToken } = useToken();
   
