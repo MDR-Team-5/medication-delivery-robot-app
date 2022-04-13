@@ -114,10 +114,8 @@ export default class RoomsList extends Component {
 
   }
 
-  //brians
   setDestination(id, color)
   {
-    console.log("im gonna say it back now");
     this.socket.send(this.ToJson("color",{"color":color}));
   }
 

@@ -1,2 +1,2 @@
-screen -ls | grep Detached | cut -d. -f1 | awk '{print $1}' | xargs kill
-screen -ls
+sudo screen -ls | grep Detached | cut -d. -f1 | awk '{print $1}' | xargs kill
+sudo screen -ls

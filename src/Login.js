@@ -5,8 +5,9 @@ import './css/Login.css';
 async function loginUser(credentials) {
   //  This is an issue causing outside devices in the same network
   //  to not be able to connect to the login API
-  return fetch('http://localhost:3001/login', {
-  //return fetch('http://10.16.18.102:3001/login', {
+//return fetch('http://localhost:3001/login', {     //  Machine
+  return fetch('http://192.168.0.13:3001/login', {  //  Home
+//return fetch('http://10.16.18.102:3001/login', {  //  WSU
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

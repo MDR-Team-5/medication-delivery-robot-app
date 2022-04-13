@@ -7,8 +7,10 @@ export default class Socket
             return this.instance;
 
         // Create WebSocket connection.
-        this.socket = new WebSocket('ws://localhost:3004');
-
+        //this.socket = new WebSocket('ws://localhost:3004');  //   Machine
+        this.socket = new WebSocket('ws://192.168.0.13:3004'); //   Home
+        //this.socket = new WebSocket('ws://??.??.??.??:3004');//   WSU
+        
         //listener for when we receive a message
         this.socket.addEventListener('message', function (event) {
             console.log('Message from server ', event.data);
