@@ -6,10 +6,10 @@ export default class Socket
         if(this.instance != null && this.instance != undefined)
             return this.instance;
 
-        // Create WebSocket connection.
+        // Create WebSocket connection to WebSocket Server.
         //this.socket = new WebSocket('ws://localhost:3004');  //   Machine
-        this.socket = new WebSocket('ws://192.168.0.13:3004'); //   Home
-        //this.socket = new WebSocket('ws://??.??.??.??:3004');//   WSU
+        //this.socket = new WebSocket('ws://192.168.0.13:3004'); //   Home
+        this.socket = new WebSocket('ws://10.16.211.2:3004');//   WSU
         
         //listener for when we receive a message
         this.socket.addEventListener('message', function (event) {
